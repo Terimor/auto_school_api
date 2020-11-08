@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Сore\Exception;
+namespace App\Exception;
 
 
 use Doctrine\Common\Collections\ArrayCollection;
