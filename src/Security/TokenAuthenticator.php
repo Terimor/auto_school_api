@@ -4,6 +4,7 @@
 namespace App\Security;
 
 
+use App\Constants\RoutesConst;
 use App\Entity\User;
 use App\Repository\UserRepository;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -41,12 +42,12 @@ class TokenAuthenticator extends AbstractGuardAuthenticator
 
     public function supports(Request $request): bool
     {
-        return $request->headers->has(User::HEADER_AUTH_TOKEN_NAME);
+        return !in_array($request->attributes->get('_route'), [RoutesConst::NAME_LOGIN, RoutesConst::NAME_REGISTRATION]);
     }
 
     public function getCredentials(Request $request): string
     {
-        return $request->headers->get(User::HEADER_AUTH_TOKEN_NAME);
+        return $request->headers->get(User::HEADER_AUTH_TOKEN_NAME, '');
     }
 
     public function getUser($credentials, UserProviderInterface $userProvider): UserInterface

@@ -33,12 +33,12 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         $this->_em->flush();
     }
 
-    public function findOneByEmail(string $email): User
+    public function findOneByEmail(string $email): ?User
     {
         return self::findOneBy([User::FIELD_EMAIL => $email]);
     }
 
-    public function findOneByApiToken(string $apiToken): User
+    public function findOneByApiToken(string $apiToken): ?User
     {
         return self::findOneBy([User::FIELD_API_TOKEN => $apiToken]);
     }

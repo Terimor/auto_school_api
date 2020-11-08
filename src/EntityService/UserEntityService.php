@@ -45,6 +45,9 @@ class UserEntityService
         if (!$user || !$this->passwordEncoder->isPasswordValid($user, $password)) {
             throw new WrongCredentialsException();
         }
+        $user->setApiToken($this->generateApiToken());
+        $this->em->persist($user);
+        $this->em->flush();
 
         return $user;
     }
