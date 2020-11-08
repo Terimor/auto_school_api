@@ -13,6 +13,7 @@
         "friendsofsymfony/rest-bundle": "^3.0",
         "jms/serializer-bundle": "^3.7",
         "nelmio/cors-bundle": "^2.1",
+        "symfony-bundles/json-request-bundle": "3.1.0",
         "symfony/apache-pack": "^1.0",
         "symfony/console": "5.1.*",
         "symfony/dotenv": "5.1.*",

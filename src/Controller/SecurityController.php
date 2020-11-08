@@ -41,7 +41,7 @@ class SecurityController extends AbstractController
         $user = $this->userEntityService->proceedLogin($email, $password);
 
         return $this->responseBuilder->buildJsonResponse($user, Response::HTTP_OK, ['Default', User::INCLUSION_GROUP_API_TOKEN]);
-    }
+}
 
     /**
      * @Route("api/logout", name="user_logout")
@@ -73,6 +73,6 @@ class SecurityController extends AbstractController
         $validator->validate($user);
         $this->userEntityService->proceedRegistration($user);
 
-        return $this->responseBuilder->buildJsonResponse($user, Response::HTTP_CREATED, [User::INCLUSION_GROUP_API_TOKEN]);
+        return $this->responseBuilder->buildJsonResponse($user, Response::HTTP_CREATED, ['Default', User::INCLUSION_GROUP_API_TOKEN]);
     }
 }

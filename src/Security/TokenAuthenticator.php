@@ -6,10 +6,10 @@ namespace App\Security;
 
 use App\Constants\RoutesConst;
 use App\Entity\User;
+use App\Exception\UnauthorizedException;
 use App\Repository\UserRepository;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
@@ -33,11 +33,7 @@ class TokenAuthenticator extends AbstractGuardAuthenticator
 
     public function start(Request $request, AuthenticationException $authException = null): JsonResponse
     {
-        $data = [
-            'message' => 'Authentication required'
-        ];
-
-        return new JsonResponse($data, Response::HTTP_UNAUTHORIZED);
+        throw new UnauthorizedException();
     }
 
     public function supports(Request $request): bool

@@ -10,6 +10,10 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class UserValidator
 {
+    private const ERROR_TYPE_WRONG_FORMAT = 'WRONG_FORMAT';
+    private const ERROR_TYPE_WRONG_LENGTH = 'WRONG_LENGTH';
+    private const ERROR_TYPE_VALUE_EXISTS = 'VALUE_ALREADY_EXISTS';
+
     private ValidatorInterface $validator;
 
     public function __construct(ValidatorInterface $validator)
@@ -19,6 +23,7 @@ class UserValidator
 
     public function validate(User $user): void
     {
-        $validatorErrors = $this->validator->validate($user);
+        //$validatorErrors = $this->validator->validate($user);
+        //dump($validatorErrors);
     }
 }

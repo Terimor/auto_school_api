@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Сore\Entity;
+namespace App\Core\Entity;
 
 
 use JMS\Serializer\Annotation as Serializer;

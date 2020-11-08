@@ -6,10 +6,11 @@ namespace App\Exception;
 
 use App\Service\Exception\CriticalException;
 use Symfony\Component\HttpFoundation\Response;
+use Throwable;
 
-class WrongCredentialsException extends CriticalException
+class UnauthorizedException extends CriticalException
 {
-    private const ERROR_DESCRIPTION = 'Wrong credentials';
+    private const ERROR_DESCRIPTION = 'Unauthorized';
 
     public function __construct()
     {
