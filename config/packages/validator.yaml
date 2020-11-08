@@ -1,0 +1,16 @@
+framework:
+    validation:
+        email_validation_mode: html5
+
+#App\Entity\User:
+#    properties:
+#        email:
+#            - Email: ~
+#        password:
+#            - Length:
+#                  min: 8
+
+        # Enables validator auto-mapping support.
+        # For instance, basic validation constraints will be inferred from Doctrine's metadata.
+        #auto_mapping:
+        #    App\Entity\: []
