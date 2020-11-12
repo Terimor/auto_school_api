@@ -9,7 +9,7 @@ use App\Builder\ResponseBuilder;
 use App\Entity\User;
 use App\EntityService\UserEntityService;
 use App\Exception\WrongCredentialsException;
-use App\Service\Validator\UserValidator;
+use App\Validator\UserValidator;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;

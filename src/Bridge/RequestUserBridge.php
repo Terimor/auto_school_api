@@ -16,8 +16,8 @@ class RequestUserBridge
     {
         $user = new User();
 
-        $user->setEmail($request->get(self::EMAIL_KEY));
-        $user->setPlainPassword($request->get(self::PASSWORD_KEY));
+        $user->setEmail($request->get(self::EMAIL_KEY, ''));
+        $user->setPlainPassword($request->get(self::PASSWORD_KEY, ''));
 
         return $user;
     }

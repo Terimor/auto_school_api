@@ -25,8 +25,7 @@ class ExceptionListener
         }
 
         $response = new JsonResponse([
-            'message' => $errorMessage,
-            'isError' => false
+            'message' => $errorMessage
         ], $statusCode);
 
         $event->setResponse($response);

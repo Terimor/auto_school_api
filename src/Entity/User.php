@@ -3,9 +3,12 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use App\Constants\ValidatorConst;
+use App\Validator\CustomConstraint;
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation as Serializer;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
@@ -34,6 +37,9 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
+     * @Assert\NotBlank(message=ValidatorConst::ERROR_TYPE_EMPTY_VALUE)
+     * @Assert\Email(message=ValidatorConst::ERROR_TYPE_WRONG_FORMAT)
+     * @CustomConstraint\Unique(message=ValidatorConst::ERROR_TYPE_VALUE_EXISTS)
      */
     private string $email;
 
@@ -50,6 +56,7 @@ class User implements UserInterface
 
     /**
      * @Serializer\Exclude()
+     * @Assert\Length(min="8", minMessage=ValidatorConst::ERROR_TYPE_WRONG_LENGTH, maxMessage=ValidatorConst::ERROR_TYPE_WRONG_LENGTH)
      */
     private ?string $password;
 
@@ -84,7 +91,7 @@ class User implements UserInterface
     public function getRoles(): array
     {
         $roles = $this->roles;
-        $roles[] = 'ROLE_USER';
+        $roles[] = self::USER_ROLE_DEFAULT;
 
         return array_unique($roles);
     }
