@@ -20,6 +20,5 @@ class UserValidator
     public function validate(User $user): void
     {
         $validatorErrors = $this->validator->validate($user);
-        dd($validatorErrors);
     }
 }

@@ -4,7 +4,9 @@ namespace App\Entity;
 
 use App\Repository\UserRepository;
 use App\Constants\ValidatorConst;
-use App\Validator\CustomConstraint;
+use App\Validator\CustomAssert;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation as Serializer;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -39,7 +41,7 @@ class User implements UserInterface
      * @ORM\Column(type="string", length=180, unique=true)
      * @Assert\NotBlank(message=ValidatorConst::ERROR_TYPE_EMPTY_VALUE)
      * @Assert\Email(message=ValidatorConst::ERROR_TYPE_WRONG_FORMAT)
-     * @CustomConstraint\Unique(message=ValidatorConst::ERROR_TYPE_VALUE_EXISTS)
+     * @CustomAssert\Unique(message=ValidatorConst::ERROR_TYPE_VALUE_EXISTS)
      */
     private string $email;
 
@@ -65,6 +67,10 @@ class User implements UserInterface
      * @Serializer\Groups({"apiToken"})
      */
     private ?string $apiToken;
+
+    public function __construct()
+    {
+    }
 
     public function getId(): ?int
     {

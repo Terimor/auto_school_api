@@ -1,9 +1,9 @@
 <?php
 
 
-namespace App\Validator\CustomConstraint;
+namespace App\Validator\CustomAssert;
 
-use App\Validator\CustomConstraint\Validator\UniqueConstraintValidator;
+use App\Validator\CustomAssert\Validator\UniqueConstraintValidator;
 use Symfony\Component\Validator\Constraint;
 
 /**

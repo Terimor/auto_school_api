@@ -1,15 +1,14 @@
 <?php
 
 
-namespace App\Validator\CustomConstraint\Validator;
+namespace App\Validator\CustomAssert\Validator;
 
 
-use App\Constants\ValidatorConst;
-use App\Entity\User;
 use App\Exception\RepositoryForClassDoesNotExistException;
 use App\Repository\UserRepository;
-use Doctrine\ORM\EntityManager;
+use App\Validator\CustomAssert\Unique;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Form\Exception\UnexpectedTypeException;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 
@@ -30,12 +29,16 @@ class UniqueConstraintValidator extends ConstraintValidator
         $entityRepository = $this->em->getRepository($className);
         $fieldName = $this->context->getPropertyName();
 
+        if ($constraint instanceof Unique) {
+            throw new UnexpectedTypeException($constraint, Unique::class);
+        }
+
         if (!$entityRepository) {
             throw new RepositoryForClassDoesNotExistException($className);
         }
 
         if ($this->userRepository->count([$fieldName => $value]) > 0) {
-            $this->context->buildViolation(ValidatorConst::ERROR_TYPE_VALUE_EXISTS)->addViolation();
+            $this->context->buildViolation($constraint->message)->addViolation();
         }
     }
 }

@@ -4,7 +4,7 @@
 namespace App\Constants;
 
 
-class ValidatorConst
+abstract class ValidatorConst
 {
     public const ERROR_TYPE_WRONG_FORMAT = 'WRONG_FORMAT';
     public const ERROR_TYPE_WRONG_LENGTH = 'WRONG_LENGTH';
