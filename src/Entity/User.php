@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\Collection\MembershipCollection;
 use App\Repository\UserRepository;
 use App\Constants\ValidatorConst;
 use App\Validator\CustomAssert;
@@ -68,8 +69,14 @@ class User implements UserInterface
      */
     private ?string $apiToken;
 
+    /**
+     * @ORM\OneToMany(targetEntity=UserSchoolMembership::class, mappedBy="user", orphanRemoval=true)
+     */
+    private MembershipCollection $memberships;
+
     public function __construct()
     {
+        $this->memberships = new MembershipCollection();
     }
 
     public function getId(): ?int
@@ -148,5 +155,10 @@ class User implements UserInterface
 
     public function eraseCredentials(): void
     {
+    }
+
+    public function getMemberships(): MembershipCollection
+    {
+        return $this->memberships;
     }
 }

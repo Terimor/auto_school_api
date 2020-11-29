@@ -8,7 +8,7 @@ use Throwable;
 
 abstract class CriticalException extends \Exception
 {
-    protected int $responseStatusCode;
+    private int $responseStatusCode;
 
     public function __construct($message, $responseStatusCode, $code = 0, Throwable $previous = null)
     {

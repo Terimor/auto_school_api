@@ -5,11 +5,11 @@ namespace App\Controller;
 
 
 use App\Bridge\RequestUserBridge;
-use App\Builder\ResponseBuilder;
 use App\Entity\User;
 use App\EntityService\UserEntityService;
+use App\Exception\ValidationErrorException;
 use App\Exception\WrongCredentialsException;
-use App\Validator\UserValidator;
+use App\Validator\UserValidatorService;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -20,11 +20,9 @@ class SecurityController extends AbstractController
     private UserEntityService $userEntityService;
 
     public function __construct(
-        ResponseBuilder $responseBuilder,
         UserEntityService $userEntityService
     ) {
         $this->userEntityService = $userEntityService;
-        parent::__construct($responseBuilder);
     }
 
     /**
@@ -59,13 +57,14 @@ class SecurityController extends AbstractController
      * @Route("api/register", name="user_registration", methods={"POST"})
      * @param Request $request
      * @param RequestUserBridge $requestUserBridge
-     * @param UserValidator $validator
+     * @param UserValidatorService $validator
      * @return Response
+     * @throws ValidationErrorException
      */
     public function register(
         Request $request,
         RequestUserBridge $requestUserBridge,
-        UserValidator $validator
+        UserValidatorService $validator
     ): Response
     {
         $user = $requestUserBridge->build($request);

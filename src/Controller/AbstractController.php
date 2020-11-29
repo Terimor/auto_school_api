@@ -12,7 +12,8 @@ class AbstractController extends \Symfony\Bundle\FrameworkBundle\Controller\Abst
 {
     protected ResponseBuilder $responseBuilder;
 
-    public function __construct(ResponseBuilder $responseBuilder)
+    /** @required */
+    public function setServices(ResponseBuilder $responseBuilder)
     {
         $this->responseBuilder = $responseBuilder;
     }

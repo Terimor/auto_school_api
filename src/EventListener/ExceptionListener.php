@@ -13,6 +13,8 @@ class ExceptionListener
 {
     public function onKernelException(ExceptionEvent $event): void
     {
+        dd(123);
+
         $throwable = $event->getThrowable();
         $statusCode = Response::HTTP_INTERNAL_SERVER_ERROR;
 
