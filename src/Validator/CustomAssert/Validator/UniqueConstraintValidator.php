@@ -29,7 +29,7 @@ class UniqueConstraintValidator extends ConstraintValidator
         $entityRepository = $this->em->getRepository($className);
         $fieldName = $this->context->getPropertyName();
 
-        if ($constraint instanceof Unique) {
+        if (!$constraint instanceof Unique) {
             throw new UnexpectedTypeException($constraint, Unique::class);
         }
 

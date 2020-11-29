@@ -72,7 +72,7 @@ class User implements UserInterface
     /**
      * @ORM\OneToMany(targetEntity=UserSchoolMembership::class, mappedBy="user", orphanRemoval=true)
      */
-    private MembershipCollection $memberships;
+    private Collection $memberships;
 
     public function __construct()
     {

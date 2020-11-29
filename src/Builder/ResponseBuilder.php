@@ -4,6 +4,7 @@
 namespace App\Builder;
 
 
+use FOS\RestBundle\View\View;
 use JMS\Serializer\SerializationContext;
 use JMS\Serializer\SerializerInterface;
 use Symfony\Component\HttpFoundation\Response;
@@ -19,10 +20,12 @@ class ResponseBuilder
         $this->serializer = $serializer;
     }
 
-    public function buildJsonResponse($entity, int $status, array $entityInclusionGroups = []): Response
+    public function buildJsonResponse($entity, int $status, array $entityInclusionGroups = null): Response
     {
         $serializationContext = null;
-        $serializationContext = SerializationContext::create()->setGroups($entityInclusionGroups);
+        if (!is_null($entityInclusionGroups)) {
+            $serializationContext = SerializationContext::create()->setGroups($entityInclusionGroups);
+        }
 
         return new Response($this->serializer->serialize($entity, self::FORMAT_JSON, $serializationContext), $status);
     }

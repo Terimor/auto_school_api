@@ -10,6 +10,8 @@ use App\EntityService\UserEntityService;
 use App\Exception\ValidationErrorException;
 use App\Exception\WrongCredentialsException;
 use App\Validator\UserValidatorService;
+use FOS\RestBundle\Controller\Annotations as Rest;
+use FOS\RestBundle\View\View;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -26,7 +28,7 @@ class SecurityController extends AbstractController
     }
 
     /**
-     * @Route("api/login", name="user_login", methods={"POST"})
+     * @Rest\Post("api/login", name="userLogin")
      * @param Request $request
      * @return Response
      * @throws WrongCredentialsException

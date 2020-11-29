@@ -8,6 +8,7 @@ use App\Core\Entity\Collection\ValidationErrorCollection;
 use App\Core\Entity\ValidationError;
 use App\Entity\User;
 use App\Exception\ValidationErrorException;
+use Symfony\Component\Validator\ConstraintViolation;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class UserValidatorService
@@ -34,9 +35,9 @@ class UserValidatorService
         }
     }
 
-    private function buildValidationError($errorMessage): ValidationError
+    private function buildValidationError(ConstraintViolation $error): ValidationError
     {
-        $validationError = new ValidationError(1, 1);
+        $validationError = new ValidationError($error->getPropertyPath(), $error->getMessage());
 
         return $validationError;
     }
